@@ -1,0 +1,226 @@
+{
+  "info": {
+    "name": "API Restaurante JWT",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:3000"
+    },
+    {
+      "key": "accessToken",
+      "value": ""
+    }
+  ],
+  "item": [
+    {
+      "name": "Auth - Login demo",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"email\": \"profesor@ejemplo.cl\",\n  \"password\": \"demo1234\"\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/auth/login",
+          "host": ["{{baseUrl}}"],
+          "path": ["auth", "login"]
+        }
+      }
+    },
+    {
+      "name": "Mesas - Listar",
+      "request": {
+        "method": "GET",
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{accessToken}}",
+              "type": "string"
+            }
+          ]
+        },
+        "url": {
+          "raw": "{{baseUrl}}/mesas",
+          "host": ["{{baseUrl}}"],
+          "path": ["mesas"]
+        }
+      }
+    },
+    {
+      "name": "Menu - Crear item",
+      "request": {
+        "method": "POST",
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{accessToken}}",
+              "type": "string"
+            }
+          ]
+        },
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"nombre\": \"Completo italiano\",\n  \"categoria\": \"Fondo\",\n  \"precio\": 3500\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/menu",
+          "host": ["{{baseUrl}}"],
+          "path": ["menu"]
+        }
+      }
+    },
+    {
+      "name": "Comandas - Abrir",
+      "request": {
+        "method": "POST",
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{accessToken}}",
+              "type": "string"
+            }
+          ]
+        },
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"mesaId\": 1\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/comandas",
+          "host": ["{{baseUrl}}"],
+          "path": ["comandas"]
+        }
+      }
+    },
+    {
+      "name": "Comandas - Agregar item",
+      "request": {
+        "method": "POST",
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{accessToken}}",
+              "type": "string"
+            }
+          ]
+        },
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"menuItemId\": 1,\n  \"cantidad\": 2\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/comandas/1/items",
+          "host": ["{{baseUrl}}"],
+          "path": ["comandas", "1", "items"]
+        }
+      }
+    },
+    {
+      "name": "Comandas - Total",
+      "request": {
+        "method": "GET",
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{accessToken}}",
+              "type": "string"
+            }
+          ]
+        },
+        "url": {
+          "raw": "{{baseUrl}}/comandas/1/total",
+          "host": ["{{baseUrl}}"],
+          "path": ["comandas", "1", "total"]
+        }
+      }
+    },
+    {
+      "name": "Comandas - Cerrar con propina",
+      "request": {
+        "method": "POST",
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{accessToken}}",
+              "type": "string"
+            }
+          ]
+        },
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"propina\": 1000\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/comandas/1/cerrar",
+          "host": ["{{baseUrl}}"],
+          "path": ["comandas", "1", "cerrar"]
+        }
+      }
+    },
+    {
+      "name": "Cocina - Ver pendientes",
+      "request": {
+        "method": "GET",
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{accessToken}}",
+              "type": "string"
+            }
+          ]
+        },
+        "url": {
+          "raw": "{{baseUrl}}/cocina",
+          "host": ["{{baseUrl}}"],
+          "path": ["cocina"]
+        }
+      }
+    }
+  ]
+}
